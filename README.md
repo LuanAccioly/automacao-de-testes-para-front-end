@@ -2,11 +2,41 @@
 
 ## Conteúdo programático
 
-- [Introdução e primeiro uso de Cypress](cypress\e2e\introducao_e_primeiro_uso_cypress)
-- [Interagindo e verificando os elementos da página](cypress\e2e\interagindo_e_verificando_os_elementos_da_pagina)
-- [Assertions](cypress\e2e\assertions)
-- [Recursos adicionais](cypress\e2e\recursos_adicionais)
-- [Exercitando com um sistema completo](cypress\e2e\exercitando_com_um_sistema_completo)
+- [Introdução a automação e visão inicial de Cypress](cypress\e2e\introducao_e_primeiro_uso_cypress)
+  
+  - Abordagens para automação de testes
+  - Fatores de sucesso para automação
+  - Principais diferenças entre Cypress e outros frameworks
+  - Funcionalidades da GUI, interação via linha de comando e dashboard
+  - Instalando e executando Cypress
+  - Escrevendo e executando os primeiros testes/conjuntos de testes
+
+- [Interagindo com os elementos da página](cypress\e2e\interagindo_e_verificando_os_elementos_da_pagina)
+  
+  - Comandos para agir nos elementos (click, dbclick, select, type, etc)
+  - Entendendo assincronismo de Cypress (uso de promises)
+  - Interagindo com elementos da interface (checkbox, dropdown, tabs, hidden, etc)
+  - Opções de locators (e melhores práticas)
+
+- [Verificando os elementos da página](cypress\e2e\assertions)
+  
+  - Entendendo melhor as asserções (should, expect, and, etc)
+  - Explorando particularidades de elementos da interface (tabelas, iframe, alert, child window, etc)
+
+- [Hooks, depuração e relatórios](cypress\e2e\recursos_adicionais)
+  
+  - Utilizando hooks (before, after, beforeEach, etc)
+  - Explorando o selector playground
+  - Mais detalhes sobre depuração (leitura do log, debug, pause, etc)
+  - Trabalhando com cookies
+  - Gerando relatórios, screenshots e vídeos
+
+- [Requisições HTTP e outros recursos](cypress\e2e\exercitando_com_um_sistema_completo)
+  
+  - Fazendo upload de arquivo
+  - Entendendo variáveis e aliases
+  - Executando requisições HTTP com o comando request
+  - Prática complementar do conteúdo 
 
 ## Importância
 
@@ -19,3 +49,44 @@ O objetivo deste curso é apresentar e praticar as principais funcionalidades de
 ## Resultados esperados
 
 Durante o curso os participantes irão adquirir a competência para usar as principais funções do framework Cypress para automação a nível de sistema. Após o curso, espera-se que os participantes possam iniciar o uso do framework nos projetos de desenvolvimento do TCE seguindo uma abordagem linear para criação de scripts.
+
+## Links Importantes
+
+- [Actions: type, click, dbclick, check, select, scrollTo](https://example.cypress.io/commands/actions)
+
+- [Asserts](https://example.cypress.io/commands/assertions)
+
+- [Traversal: children, closest, filter, find](https://example.cypress.io/commands/traversal)
+
+- [Hidden Elements](https://www.tutorialspoint.com/cypress/cypress_hidden_elements.htm)
+
+- [Locators](https://www.tutorialspoint.com/cypress/cypress_locators.htm)
+
+
+
+---
+
+### Cypress Studio
+
+Para configurar o Studio, vamos no arquivo `cypress.config.js`:
+
+```javascript
+const { defineConfig } = require("cypress");
+
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    experimentalStudio: true, // Adicionamos esta linha
+  },
+});
+
+
+```
+
+Abra o Cypress, escolha o arquivo que deseja e clique na opção "Add Commands to Test" 
+
+![](images/studiopng.png)
+
+
