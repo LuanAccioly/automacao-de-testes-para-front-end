@@ -10,8 +10,8 @@ export class Home {
     }
 
     /**
-     * Retorna o input da busca
-     * @returns DOM do input
+     * Retorna o input da busca.
+     * @returns DOM do input.
      */
     getSearchInput() {
         return cy.get('input[name="search"]').first()
@@ -25,6 +25,10 @@ export class Home {
         this.getSearchInput.type(text)
     }
 
+    /**
+     * Recupera o botão da busca. 
+     * @returns DOM do botão.
+     */
     getSearchButton() {
         return cy.get("#search > div.search-button > button").first()
     }

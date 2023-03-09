@@ -6,6 +6,9 @@ export class Blog {
         this.title = "Blog"
     }
 
+    /**
+     * Visita página do blog.
+     */
     visit() {
         cy.visit(this.url)
     }
