@@ -1,4 +1,4 @@
-
+/// <reference types="cypress" />
 
 it('exemplo get: buscar botao e verifica seu conteúdo', () => {
   cy.visit('https://example.cypress.io/commands/querying')  
