@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-it('exemplo get: buscar botao e verifica seu conteúdo', () => {
+it('get: busca botao e verifica seu conteúdo', () => {
   cy.visit('https://example.cypress.io/commands/querying')  
 
   //busca pelo id
@@ -9,19 +9,19 @@ it('exemplo get: buscar botao e verifica seu conteúdo', () => {
   //busca pela classe
   cy.get('.query-btn').should('contain', 'Button')
   
-  //retorna primeiro botão que é filho direto de .well, que é descendente de #queryng
+  //retorna primeiro botão que é filho direto de .well, 
+  //que é descendente de #queryng
   cy.get('#querying .well>button:first').should('contain', 'Button')
+
+  //cy.get('#querying .row').should('have.have.length',5)
 });
 
 
-it('exemplo get: busca pelo id criado para facilitar a busca', () => {
+it('get: busca elemento pelo test-id', () => {
   cy.visit('https://example.cypress.io/commands/querying')    
   
   cy.get('[data-test-id="test-example"]').should('have.class', 'example')
   
-  cy.get('[data-test-id="test-example"]')
-      .invoke('attr', 'data-test-id')
-      .should('equal', 'test-example')
 });
 
 it('exemplo contains: busca elemento pelo conteúdo', () => {
