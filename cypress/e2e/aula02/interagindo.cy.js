@@ -1,4 +1,4 @@
-describe("Teste aula 2", () => {
+describe("Interagindo com elementos da página", () => {
   beforeEach(() => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula2/aula2.html");
   });
