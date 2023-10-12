@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/LuanAccioly/automacao-de-testes-para-front-end#readme",
   "devDependencies": {
-    "cypress": "^11.2.0"
+    "cypress": "^13.3.1"
   }
 }

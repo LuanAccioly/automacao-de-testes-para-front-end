@@ -1,25 +1,30 @@
 /// <reference types="cypress" />
 
-it('adiciona um novo elemento na lista de todo', () => {
-  cy.visit('http://todomvc-app-for-testing.surge.sh/')
+beforeEach(() => {
+  cy.visit('http://todomvc-app-for-testing.surge.sh/')    
+});
 
-  //recupera o campo para inserir e coloca conteúdo  
-  cy.get('.new-todo').type('Limpar sala{enter}')
+it('adiciona três itens', () => {
 
-  //recupera o toggle e clica
-  cy.get('.toggle').click()
+  cy.get('.new-todo').type('Pagar boletos que vencem amanhã{enter}')
+  cy.get('.new-todo').type('Terminar apresentação{enter}')
+  cy.get('.new-todo').type('Agendar encanador para a pia{enter}')
+  // retorna os elementos li dentro do item cuja classe é .todo-list
+  cy.get('.todo-list li').should('have.length',3)
 
-  //recupera a opção para apagar o que está completo e clica
-  cy.contains('Clear completed').click()
+});
+
+it.only('marca como completo e apaga lista de completos', () => {
+  cy.get('.new-todo').type('Fazer backup{enter}')
+  cy.get('.toggle').click() // marca como completo
+  cy.contains('Clear completed').click() //apaga os completos
+  cy.get('.todo-list li').should('have.length',0)
 });
 
 
 it('asserts change in application state', () => {
-  cy.visit('http://todomvc-app-for-testing.surge.sh/')
 
   cy.get('.new-todo').type('New Todo {enter}')
-  
   cy.get('.new-todo').type('Another Todo {enter}')
-  
   cy.get(".todo-list").find('li').should('have.length', 2)
 });
