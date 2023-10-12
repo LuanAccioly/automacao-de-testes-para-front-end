@@ -1,7 +1,7 @@
 
 /// <reference types="cypress" />
 
-describe('testes muito simples', () => {
+describe('grupo de testes muito simples', () => {
   it('asserção que passa', () => {
     expect(true).to.be.equal(true)
   })

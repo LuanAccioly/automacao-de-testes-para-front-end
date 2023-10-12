@@ -24,7 +24,7 @@ it('get: busca elemento pelo test-id', () => {
   
 });
 
-it('exemplo contains: busca elemento pelo conteúdo', () => {
+it('contains: busca elemento pelo conteúdo', () => {
   cy.visit('https://example.cypress.io/commands/querying')    
   
   //busca elemento da classe .query-list e procura na sua árvore 
