@@ -1,9 +1,8 @@
 describe("Interagindo com elementos da página", () => {
-  
   beforeEach(() => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula2/aula2.html");
   });
-  
+
   it('Teste de clique no botão "Click"', () => {
     cy.get("#btnClick").click();
     cy.get("#result").should("have.text", "Clicou");
@@ -24,10 +23,15 @@ describe("Interagindo com elementos da página", () => {
     cy.get("#textInput").type(textoDigitado);
     cy.get("#result").should("contain.text", `: ${textoDigitado}`);
   });
+  it("Marca o checkbox", () => {
+    cy.get('[data-test="checkbox"]').should("not.be.checked");
+    cy.get('[data-test="checkbox"]').check();
+    cy.get('[data-test="checkbox"]').should("be.checked");
+    cy.get("#result").should("contain", "Checkbox: Marcado");
+  });
 });
 
 describe("Teste do Playground 2", () => {
-
   beforeEach(() => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula3/encontro3.html");
   });
@@ -44,4 +48,7 @@ describe("Teste do Playground 2", () => {
     cy.get("table tbody tr").eq(1).should("contain", "30");
   });
 
+  it.only("Interagindo com link", () => {
+    cy.get("[data-test='googleLink']").click();
+  });
 });
