@@ -4,27 +4,36 @@ beforeEach(() => {
   cy.visit('http://todomvc-app-for-testing.surge.sh/')    
 });
 
-it('adiciona três itens', () => {
+it('Adiciona três itens', () => {
 
   cy.get('.new-todo').type('Pagar boletos que vencem amanhã{enter}')
   cy.get('.new-todo').type('Terminar apresentação{enter}')
   cy.get('.new-todo').type('Agendar encanador para a pia{enter}')
   // retorna os elementos li dentro do item cuja classe é .todo-list
-  cy.get('.todo-list li').should('have.length',3)
+  cy.get('.todo-list li').should('have.length',3)//possui três itens
 
 });
 
-it.only('marca como completo e apaga lista de completos', () => {
+it('Marca como completo e apaga lista de completos', () => {
+
   cy.get('.new-todo').type('Fazer backup{enter}')
   cy.get('.toggle').click() // marca como completo
   cy.contains('Clear completed').click() //apaga os completos
-  cy.get('.todo-list li').should('have.length',0)
+  cy.get('.todo-list li').should('have.length',0)//possui 0 itens
 });
 
+it('Cria um item', () => {
+  // Executa apenas uma vez, não é query nem assertion
+  cy.reload
 
-it('asserts change in application state', () => {
+  // As queries .focused() e .should() estão ligadas,
+  // (re) executem até que o elemento em foco tenha a classe 'new-todo'
+  cy.focused().should('have.class', 'new-todo')
 
-  cy.get('.new-todo').type('New Todo {enter}')
-  cy.get('.new-todo').type('Another Todo {enter}')
-  cy.get(".todo-list").find('li').should('have.length', 2)
-});
+  // As queries .get() e .find() estão ligadas, 
+  // produzem o subject para o comando de ação type
+  cy.get('.header').find('.new-todo').type('Algo para fazer{enter}')
+
+  // As duas queries e a asserção estão todas ligadas
+  cy.get('.todoapp').find('.todo-list li').should('have.length', 1)
+})

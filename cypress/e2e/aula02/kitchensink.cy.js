@@ -48,3 +48,39 @@ describe('Querying', () => {
     
 });
 
+describe.only('Agindo (acting)', () => {
+
+  beforeEach(() => {
+      cy.visit("https://example.cypress.io/commands/actions")
+  });
+    
+  it('click - em posições além do centro ', () => {
+    // padrão do click é no centro
+    cy.get('#action-canvas').click()
+    // clicando em pontos diferentes
+    cy.get('#action-canvas').click('topLeft')
+    cy.get('#action-canvas').click('top')
+    cy.get('#action-canvas').click('topRight')
+    cy.get('#action-canvas').click('left')
+    cy.get('#action-canvas').click('right')
+    cy.get('#action-canvas').click('bottomLeft')
+    cy.get('#action-canvas').click('bottom')
+    cy.get('#action-canvas').click('bottomRight')
+  });
+
+  it('click - em coordenadas bem definidas', () => {
+    cy.get('#action-canvas')
+    .click(80, 75)
+    .click(170, 75)
+    .click(80, 165)
+    .click(100, 185)
+    .click(125, 190)
+    .click(150, 185)
+    .click(170, 165)    
+  });
+
+  it('click - múltiplo', () => {
+    cy.get('.action-labels>.label').click({ multiple: true })
+  });
+
+});
