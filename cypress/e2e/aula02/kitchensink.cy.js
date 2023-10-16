@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Querying', () => {
+describe('Buscando (Querying)', () => {
 
   beforeEach(() => {
     cy.visit('https://example.cypress.io/commands/querying')  
@@ -48,7 +48,7 @@ describe('Querying', () => {
     
 });
 
-describe.only('Agindo (acting)', () => {
+describe('Agindo (acting)', () => {
 
   beforeEach(() => {
       cy.visit("https://example.cypress.io/commands/actions")
@@ -82,5 +82,14 @@ describe.only('Agindo (acting)', () => {
   it('click - múltiplo', () => {
     cy.get('.action-labels>.label').click({ multiple: true })
   });
+
+});
+
+describe('Travessia (traversal)', () => {
+
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/traversal")
+  });
+
 
 });
