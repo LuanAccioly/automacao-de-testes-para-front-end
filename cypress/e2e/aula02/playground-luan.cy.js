@@ -48,7 +48,29 @@ describe("Teste do Playground 2", () => {
     cy.get("table tbody tr").eq(1).should("contain", "30");
   });
 
-  it.only("Interagindo com link", () => {
+  it("Interagindo com link", () => {
     cy.get("[data-test='googleLink']").click();
+
+    // Usamos o Origin pois estamos lidando com outro dominio
+    cy.origin("https://www.google.com", () => {
+      cy.get("#APjFqb").should("be.enabled"); // ID do campo de pesquisa do google
+      cy.url().should("contain", "google.com");
+    });
+  });
+
+  it("Abrir Alert", () => {
+    cy.get("[data-test=openAlertButton]").click();
+    cy.on("window:alert", (message) => {
+      expect(message).to.equal("Isso é um alerta!"); // Substitua com o texto do alerta real
+    });
+  });
+
+  it("Teste de Child Window", () => {
+    cy.get("[data-test='openChildWindowButton']")
+      .invoke("removeAttr", "target")
+      .click();
+    cy.origin("https://www.example.com", () => {
+      cy.url().should("include", "example.com");
+    });
   });
 });
