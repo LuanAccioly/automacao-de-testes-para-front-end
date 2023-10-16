@@ -27,13 +27,13 @@ it('Cria um item', () => {
   cy.reload
 
   // As queries .focused() e .should() estão ligadas,
-  // (re) executem até que o elemento em foco tenha a classe 'new-todo'
+  // (re) executam até que o elemento em foco tenha a classe 'new-todo'
   cy.focused().should('have.class', 'new-todo')
 
   // As queries .get() e .find() estão ligadas, 
   // produzem o subject para o comando de ação type
   cy.get('.header').find('.new-todo').type('Algo para fazer{enter}')
 
-  // As duas queries e a asserção estão todas ligadas
+  // As duas queries e a asserção estão ligadas
   cy.get('.todoapp').find('.todo-list li').should('have.length', 1)
 })

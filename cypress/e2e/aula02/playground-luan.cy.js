@@ -48,7 +48,7 @@ describe("Teste do Playground 2", () => {
     cy.get("table tbody tr").eq(1).should("contain", "30");
   });
 
-  it.only("Interagindo com link", () => {
+  it("Interagindo com link", () => {
     cy.get("[data-test='googleLink']").click();
   });
 });
