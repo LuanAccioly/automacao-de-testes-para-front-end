@@ -29,6 +29,15 @@ describe("Interagindo com elementos da página", () => {
     cy.get('[data-test="checkbox"]').should("be.checked");
     cy.get("#result").should("contain", "Checkbox: Marcado");
   });
+
+  it("Desmarca o checkbox", () => {
+    cy.get('[data-test="checked-checkbox"]').should("be.checked").uncheck();
+    cy.get('[data-test="checked-checkbox"]').should("not.be.checked");
+    cy.get("#result").should("contain", "Checkbox: Desmarcado");
+  });
+  it.only("Upload arquivos", () => {
+    cy.get("input[type=file]").selectFile("cypress/fixtures/example.json");
+  });
 });
 
 describe("Teste do Playground 2", () => {
