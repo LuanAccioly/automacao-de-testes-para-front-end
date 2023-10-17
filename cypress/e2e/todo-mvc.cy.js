@@ -11,7 +11,6 @@ it('Adiciona três itens', () => {
   cy.get('.new-todo').type('Agendar encanador para a pia{enter}')
   // retorna os elementos li dentro do item cuja classe é .todo-list
   cy.get('.todo-list li').should('have.length',3)//possui três itens
-
 });
 
 it('Marca como completo e apaga lista de completos', () => {

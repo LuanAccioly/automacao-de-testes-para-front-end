@@ -93,3 +93,32 @@ describe('Travessia (traversal)', () => {
 
 
 });
+
+describe.only('Usando a própria função no should', () => {
+
+  beforeEach(() => {
+    cy.visit('https://example.cypress.io/commands/assertions')  
+  });
+
+  it('Encontrando três alementos simultâneos', () => {
+    cy.get('.assertions-p').find('p')
+    .should(($p) => {
+      // retorna um array com os textos dentro de cada p
+      let texts = $p.map((i, el) => 
+        Cypress.$(el).text() // método text de JQuery 
+      )
+      
+      // .get() retorna um array de strings
+      texts = texts.get()
+  
+      expect(texts, 'O array deve ter tamanho 3').to.have.length(3)
+  
+      expect(texts, 'Possui todo o texto esperado para o parágrafo').to.deep
+        .eq(['Some text from first p',
+          'More text from second p',
+          'And even more text from third p',
+      ])
+    })
+  });
+    
+});
