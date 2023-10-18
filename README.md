@@ -2,26 +2,11 @@
 
 ## Preparando o projeto
 
-Atualizar
+- Atualizar
+  - npm i
 
-npm i
-
-Abrir o projeto com Cypress
-
-npx cypress open
-
-## Pastas
-
-- Dia 1 : [Introdução a automação e visão inicial de Cypress](cypress\e2e\aula01)
-
-- Dia 2 : [Interagindo com os elementos da página](cypress\e2e\aula02)
-  
-- Dia 3 : [Verificando os elementos da página](cypress\e2e\aula03)
-  
-- Dia 4 : [Hooks, depuração e relatórios](cypress\e2e\aula04)
-
-- Dia 5 : [Requisições HTTP e outros recursos](cypress\e2e\aula05)
-
+- Abrir o projeto com Cypress
+  - npx cypress open
 
 ## Links Importantes
 
