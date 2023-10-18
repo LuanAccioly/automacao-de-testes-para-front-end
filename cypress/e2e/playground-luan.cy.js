@@ -1,6 +1,6 @@
 describe("Interagindo com elementos da página", () => {
   beforeEach(() => {
-    cy.visit("https://curso-automacao.vercel.app/aulas/aula2/aula2.html");
+    cy.visit("https://curso-automacao.vercel.app/aulas/aula2/index.html");
   });
 
   it('Teste de clique no botão "Click"', () => {
@@ -35,14 +35,14 @@ describe("Interagindo com elementos da página", () => {
     cy.get('[data-test="checked-checkbox"]').should("not.be.checked");
     cy.get("#result").should("contain", "Checkbox: Desmarcado");
   });
-  it.only("Upload arquivos", () => {
+  it("Upload arquivos", () => {
     cy.get("input[type=file]").selectFile("cypress/fixtures/example.json");
   });
 });
 
 describe("Teste do Playground 2", () => {
   beforeEach(() => {
-    cy.visit("https://curso-automacao.vercel.app/aulas/aula3/encontro3.html");
+    cy.visit("https://curso-automacao.vercel.app/aulas/aula3/index.html");
   });
 
   it("Teste de verificação de texto", () => {
