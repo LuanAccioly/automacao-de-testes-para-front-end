@@ -82,4 +82,11 @@ describe("Teste do Playground 2", () => {
       cy.url().should("include", "example.com");
     });
   });
+
+  it.only("Teste de Iframe", () => {
+    cy.get('[data-test="iframe"]').then((iframe) => {
+      const body = iframe.contents().find("body");
+      cy.wrap(body).find("h1").contains("Example Domain");
+    });
+  });
 });
