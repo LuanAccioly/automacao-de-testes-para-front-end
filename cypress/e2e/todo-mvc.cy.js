@@ -11,6 +11,10 @@ it('Adiciona três itens', () => {
   cy.get('.new-todo').type('Agendar encanador para a pia{enter}')
   // retorna os elementos li dentro do item cuja classe é .todo-list
   cy.get('.todo-list li').should('have.length',3)//possui três itens
+  //imprime no consolde o texto dos elementos na lista
+  cy.get('.todo-list li').each(($el,$i,$list) => {
+    console.log($el.text())
+  });
 });
 
 it('Marca como completo e apaga lista de completos', () => {
@@ -23,7 +27,7 @@ it('Marca como completo e apaga lista de completos', () => {
 
 it('Cria um item', () => {
   // Executa apenas uma vez, não é query nem assertion
-  cy.reload
+  cy.reload()
 
   // As queries .focused() e .should() estão ligadas,
   // (re) executam até que o elemento em foco tenha a classe 'new-todo'
