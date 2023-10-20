@@ -40,3 +40,42 @@ it('Cria um item', () => {
   // As duas queries e a asserção estão ligadas
   cy.get('.todoapp').find('.todo-list li').should('have.length', 1)
 })
+
+it('Verificando diferentes listas', () => {
+  // Acrescenta dois itens
+  cy.get('.new-todo').type('Fazer backup{enter}')
+  cy.get('.new-todo').type('Preparar aula{enter}')
+  // Marca um dos itens como completo
+  cy.get('.toggle').eq(0).click()
+  // Verifica o tamanho da lista
+  cy.get('.todo-list li').should('have.length',2)
+  // Clica nos ativos
+  cy.contains('Active').click()
+  // Verifica o tamanho da lista
+  cy.get('.todo-list li').should('have.length',1)
+  // Clica nos completos
+  cy.contains('Completed').click() //apaga os completos
+  // Verifica o tamanho da lista
+  cy.get('.todo-list li').should('have.length',1)
+});
+
+it('meu', () => {
+  // Insere dois elementos na lista
+  cy.get('.new-todo').type('Fazer backup{enter}')
+  cy.get('.new-todo').type('Preparar aula{enter}')
+  // Verifica que o tamanho da lista é 2
+  cy.get('.todo-list li').should('have.length',2)
+  // O conteúdo corresponde ao que foi digitado
+  cy.get('.todo-list .view > label').eq(0).should('have.text', 'Preparar aula')
+  cy.get('.todo-list .view > label').eq(1).should('have.text', 'Fazer backup')
+  // Marca um dos elementos como completo
+  cy.get('.toggle').eq(0).click()
+  // Verifica que o elemento marcado está marcado como completo
+  cy.get('.todo-list li').first().should('have.class','completed')
+  // Desmarque o elemento que foi marcado
+  cy.get('.toggle').eq(0).click()
+  // Verifica que o estilo do elemento é o estilo antes da marcação 
+  cy.get('.todo-list li').first().should('not.have.class','completed')
+  // Tamanho da lista continua sendo 2
+  cy.get('.todo-list li').should('have.length',2)  
+});
