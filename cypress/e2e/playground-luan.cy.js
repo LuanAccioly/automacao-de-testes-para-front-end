@@ -77,17 +77,6 @@ describe("Teste de elementos com particularidades", () => {
       cy.url().should("include", "example.com");
       cy.get("h1").contains("Example Domain");
     });
-    it("Abrir Alert", () => {
-      // intercepta a ocorrência do evento de abertura de um alerta
-      cy.on("window:alert", ($message) => {
-        // Confirma o conteúdo do alerta
-        expect($message).to.equal("Isso é um alerta!");
-        cy.confirm("alert");
-        return true;
-      });
-      // clica em botão que abre o alerta
-      cy.get("[data-test=openAlertButton]").click();
-    });
   });
 
   it("Teste de Iframe", () => {
@@ -95,5 +84,16 @@ describe("Teste de elementos com particularidades", () => {
       const body = $iframe.contents().find("body");
       cy.wrap(body).find("h1").contains("Example Domain");
     });
+  });
+  it.only("Abrir Alert", () => {
+    const stub = cy.stub();
+    // intercepta a ocorrência do evento de abertura de um alerta
+    cy.on("window:alert", stub);
+    cy.get("[data-test=openAlertButton]")
+      .click()
+      .then(() => {
+        // Confirma que o alerta foi aberto
+        expect(stub.getCall(0)).to.be.calledWith("Isso é um alerta!");
+      });
   });
 });
