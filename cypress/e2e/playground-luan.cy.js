@@ -64,19 +64,9 @@ describe("Teste de elementos com particularidades", () => {
     cy.origin("https://www.google.com", () => {
       cy.url().should("contain", "google.com");
       cy.get("#APjFqb") // campo de pesquisa do google
-        .should("be.enabled"); 
-      cy.get("#APjFqb").type("origin Cypress")
+        .should("be.enabled");
+      cy.get("#APjFqb").type("origin Cypress");
     });
-  });
-
-  it("Abrir Alert", () => {
-    // intercepta a ocorrência do evento de abertura de um alerta
-    cy.on("window:alert", ($message) => {
-      // Confirma o conteúdo do alerta
-      expect($message).to.equal("Isso é um alerta!"); 
-    });
-    // clica em botão que abre o alerta
-    cy.get("[data-test=openAlertButton]").click();
   });
 
   it("Teste de Child Window", () => {
@@ -85,6 +75,18 @@ describe("Teste de elementos com particularidades", () => {
       .click();
     cy.origin("https://www.example.com", () => {
       cy.url().should("include", "example.com");
+      cy.get("h1").contains("Example Domain");
+    });
+    it("Abrir Alert", () => {
+      // intercepta a ocorrência do evento de abertura de um alerta
+      cy.on("window:alert", ($message) => {
+        // Confirma o conteúdo do alerta
+        expect($message).to.equal("Isso é um alerta!");
+        cy.confirm("alert");
+        return true;
+      });
+      // clica em botão que abre o alerta
+      cy.get("[data-test=openAlertButton]").click();
     });
   });
 
