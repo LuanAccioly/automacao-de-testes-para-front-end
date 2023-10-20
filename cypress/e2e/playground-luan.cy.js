@@ -40,7 +40,7 @@ describe("Interagindo com elementos da página", () => {
   });
 });
 
-describe("Teste do Playground 2", () => {
+describe("Teste de elementos com particularidades", () => {
   beforeEach(() => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula3/index.html");
   });
@@ -62,16 +62,21 @@ describe("Teste do Playground 2", () => {
 
     // Usamos o Origin pois estamos lidando com outro dominio
     cy.origin("https://www.google.com", () => {
-      cy.get("#APjFqb").should("be.enabled"); // ID do campo de pesquisa do google
       cy.url().should("contain", "google.com");
+      cy.get("#APjFqb") // campo de pesquisa do google
+        .should("be.enabled"); 
+      cy.get("#APjFqb").type("origin Cypress")
     });
   });
 
   it("Abrir Alert", () => {
-    cy.get("[data-test=openAlertButton]").click();
-    cy.on("window:alert", (message) => {
-      expect(message).to.equal("Isso é um alerta!"); // Substitua com o texto do alerta real
+    // intercepta a ocorrência do evento de abertura de um alerta
+    cy.on("window:alert", ($message) => {
+      // Confirma o conteúdo do alerta
+      expect($message).to.equal("Isso é um alerta!"); 
     });
+    // clica em botão que abre o alerta
+    cy.get("[data-test=openAlertButton]").click();
   });
 
   it("Teste de Child Window", () => {
@@ -83,9 +88,9 @@ describe("Teste do Playground 2", () => {
     });
   });
 
-  it.only("Teste de Iframe", () => {
-    cy.get('[data-test="iframe"]').then((iframe) => {
-      const body = iframe.contents().find("body");
+  it("Teste de Iframe", () => {
+    cy.get('[data-test="iframe"]').then(($iframe) => {
+      const body = $iframe.contents().find("body");
       cy.wrap(body).find("h1").contains("Example Domain");
     });
   });
