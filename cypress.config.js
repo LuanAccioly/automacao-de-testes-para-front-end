@@ -7,5 +7,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     experimentalStudio: true,
+    baseUrl : 'https://ecommerce-playground.lambdatest.io'
   },
 });

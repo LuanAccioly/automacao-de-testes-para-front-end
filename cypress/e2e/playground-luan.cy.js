@@ -3,38 +3,40 @@ describe("Interagindo com elementos da página", () => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula2/index.html");
   });
 
-  it('Teste de clique no botão "Click"', () => {
+  it('Clique no botão "Click"', () => {
     cy.get("#btnClick").click();
     cy.get("#result").should("have.text", "Clicou");
   });
 
-  it('Teste de clique duplo no botão "Double Click"', () => {
+  it('Clique duplo no botão "Double Click"', () => {
     cy.get("#btnDoubleClick").dblclick();
     cy.get("#result").should("have.text", "Fui clicado duas vezes");
   });
 
-  it("Teste de seleção de opção no dropdown", () => {
+  it("Seleção de opção no dropdown", () => {
     cy.get("#dropdown").select("Opção 2");
     cy.get("#result").should("have.text", "Opção selecionada: option2");
   });
 
-  it("Teste de digitação no campo de texto", () => {
+  it("Digitação no campo de texto", () => {
     const textoDigitado = "Texto de exemplo";
     cy.get("#textInput").type(textoDigitado);
     cy.get("#result").should("contain.text", `: ${textoDigitado}`);
   });
-  it("Marca o checkbox", () => {
+
+  it("Marcando um checkbox", () => {
     cy.get('[data-test="checkbox"]').should("not.be.checked");
     cy.get('[data-test="checkbox"]').check();
     cy.get('[data-test="checkbox"]').should("be.checked");
     cy.get("#result").should("contain", "Checkbox: Marcado");
   });
 
-  it("Desmarca o checkbox", () => {
+  it("Desmarcando um checkbox", () => {
     cy.get('[data-test="checked-checkbox"]').should("be.checked").uncheck();
     cy.get('[data-test="checked-checkbox"]').should("not.be.checked");
     cy.get("#result").should("contain", "Checkbox: Desmarcado");
   });
+
   it("Upload arquivos", () => {
     cy.get("input[type=file]").selectFile("cypress/fixtures/example.json");
   });
@@ -45,11 +47,11 @@ describe("Teste de elementos com particularidades", () => {
     cy.visit("https://curso-automacao.vercel.app/aulas/aula3/index.html");
   });
 
-  it("Teste de verificação de texto", () => {
+  it("Verificação de texto", () => {
     cy.get("#assertionText").should("have.text", "Texto para verificar");
   });
 
-  it("Teste de verificação de elementos da tabela", () => {
+  it("Verificação de elementos da tabela", () => {
     cy.get("table tbody tr").should("have.length", 2);
     cy.get("table tbody tr").first().should("contain", "Alice");
     cy.get("table tbody tr").first().should("contain", "25");
@@ -57,7 +59,7 @@ describe("Teste de elementos com particularidades", () => {
     cy.get("table tbody tr").eq(1).should("contain", "30");
   });
 
-  it("Interagindo com link", () => {
+  it("Link que leva para um domínio externo", () => {
     cy.get("[data-test='googleLink']").click();
 
     // Usamos o Origin pois estamos lidando com outro dominio
@@ -69,7 +71,7 @@ describe("Teste de elementos com particularidades", () => {
     });
   });
 
-  it("Teste de Child Window", () => {
+  it("Abre uma Child Window e verifica conteúdo", () => {
     cy.get("[data-test='openChildWindowButton']")
       .invoke("removeAttr", "target")
       .click();
@@ -79,14 +81,14 @@ describe("Teste de elementos com particularidades", () => {
     });
   });
 
-  it("Teste de Iframe", () => {
+  it("Acessar elemento dentro de um Iframe", () => {
     cy.get('[data-test="iframe"]').then(($iframe) => {
       const body = $iframe.contents().find("body");
       cy.wrap(body).find("h1").contains("Example Domain");
     });
   });
-
-  it.only("Abrir Alert", () => {
+  
+  it("Abrindo um alert", () => {
     const stub = cy.stub();
     // intercepta a ocorrência do evento de abertura de um alerta
     cy.on("window:alert", stub);
