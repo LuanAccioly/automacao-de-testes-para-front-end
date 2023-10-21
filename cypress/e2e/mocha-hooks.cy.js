@@ -1,42 +1,39 @@
 
-describe("Bloco externo", () => {
 
-    before(() => {
-        console.log( "Antes de todos" );
-    });
+before(() => { 
+    cy.log("Roda antes de todos");
+});
 
-    after(() => {
-        console.log( "Depois de todos" );
-    });
+after(() => {
+    cy.log("Roda depois de todos");
+});
 
+beforeEach(() => {
+    cy.log("Roda antes de cada teste");
+});
+
+afterEach(() => {
+    cy.log("Roda após cada testte");
+});
+
+it('Teste 1', () => {
+    cy.log('Corpo do teste 1')
+});
+
+it('Teste 2', () => {
+    cy.log('Corpo do teste 2')
+});
+
+describe("Grupo de testes", () => {
     beforeEach(() => {
-        console.log( "Antes de cada" );
+        cy.log("Antes de cada (Bloco interno)");
     });
 
-    afterEach(() => {
-        console.log( "Após cada" );
+    it('Teste 3', () => {
+        cy.log('Corpo do testes 3')
     });
 
-    it('Teste 1', () => {
-        console.log('Teste 1')
+    it('Teste 4', () => {
+        cy.log('Corpo do teste 4')
     });
-
-    it('Teste 2', () => {
-        console.log('Teste 2')
-    });
-
-    describe( "Bloco interno", () => {
-        beforeEach(() => {
-            console.log( "Antes de cada (Bloco interno)" );
-        });
-
-        it('Teste 3', () => {
-            console.log('Teste Interno 1')
-        });
-        
-        it('Teste 4', () => {
-            console.log('Teste Interno 2')
-        });
-    });
-
 });

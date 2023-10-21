@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/**
+ * Login no site de playground www.saucedemo.com
+ */
+Cypress.Commands.add('loginSauce', (user, pwd) => {
+    cy.visit("www.saucedemo.com");
+    cy.get("[data-test='username']").type(user);
+    cy.get("[data-test='password']").type(pwd);
+    cy.get("[data-test='login-button']").click();
+})

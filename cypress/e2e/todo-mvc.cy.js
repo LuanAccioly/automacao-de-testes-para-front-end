@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 
 beforeEach(() => {
   cy.visit('http://todomvc-app-for-testing.surge.sh/')    
@@ -59,7 +58,7 @@ it('Verificando diferentes listas', () => {
   cy.get('.todo-list li').should('have.length',1)
 });
 
-it('meu', () => {
+it('marca e desmarca item', () => {
   // Insere dois elementos na lista
   cy.get('.new-todo').type('Fazer backup{enter}')
   cy.get('.new-todo').type('Preparar aula{enter}')

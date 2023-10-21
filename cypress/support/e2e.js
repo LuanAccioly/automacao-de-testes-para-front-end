@@ -18,3 +18,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// descomentar caso queira rodar antes de todos os testes
+// before(() => { 
+//     cy.log("Global - Roda antes de todos");
+// });

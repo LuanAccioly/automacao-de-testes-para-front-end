@@ -85,6 +85,7 @@ describe("Teste de elementos com particularidades", () => {
       cy.wrap(body).find("h1").contains("Example Domain");
     });
   });
+
   it.only("Abrir Alert", () => {
     const stub = cy.stub();
     // intercepta a ocorrência do evento de abertura de um alerta
