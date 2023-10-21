@@ -85,7 +85,7 @@ describe('Agindo (acting)', () => {
 
 });
 
-describe('Asserções', () => {
+describe('Asserções (asserts)', () => {
 
   beforeEach(() => {
     cy.visit('https://example.cypress.io/commands/assertions')
@@ -124,7 +124,7 @@ describe('Asserções', () => {
       })
   });
 
-  it.only('navegando na tabela', () => {
+  it('Verificando a tabela', () => {
     cy.get('.assertion-table')
     .find('tbody tr:last').should('have.class', 'success')
     .find('td')

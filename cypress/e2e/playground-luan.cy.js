@@ -81,13 +81,6 @@ describe("Teste de elementos com particularidades", () => {
     });
   });
 
-  it("Acessar elemento dentro de um Iframe", () => {
-    cy.get('[data-test="iframe"]').then(($iframe) => {
-      const body = $iframe.contents().find("body");
-      cy.wrap(body).find("h1").contains("Example Domain");
-    });
-  });
-  
   it("Abrindo um alert", () => {
     const stub = cy.stub();
     // intercepta a ocorrência do evento de abertura de um alerta
@@ -99,4 +92,12 @@ describe("Teste de elementos com particularidades", () => {
         expect(stub.getCall(0)).to.be.calledWith("Isso é um alerta!");
       });
   });
+
+  it("Acessar elemento dentro de um Iframe", () => {
+    cy.get('[data-test="iframe"]').then(($iframe) => {
+      const body = $iframe.contents().find("body");
+      cy.wrap(body).find("h1").contains("Example Domain");
+    });
+  });
+  
 });
