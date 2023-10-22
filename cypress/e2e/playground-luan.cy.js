@@ -81,16 +81,14 @@ describe("Teste de elementos com particularidades", () => {
     });
   });
 
-  it("Abrindo um alert", () => {
-    const stub = cy.stub();
+  it("Abrir Alert", () => {
+    cy.get("[data-test=openAlertButton]").click();
+
     // intercepta a ocorrência do evento de abertura de um alerta
-    cy.on("window:alert", stub);
-    cy.get("[data-test=openAlertButton]")
-      .click()
-      .then(() => {
-        // Confirma que o alerta foi aberto
-        expect(stub.getCall(0)).to.be.calledWith("Isso é um alerta!");
-      });
+    cy.on("window:alert", ($message) => {
+      // Confirma o conteúdo do alerta
+      expect($message).to.equal("Isso é um alerta!");
+    });
   });
 
   it("Acessar elemento dentro de um Iframe", () => {
@@ -99,5 +97,4 @@ describe("Teste de elementos com particularidades", () => {
       cy.wrap(body).find("h1").contains("Example Domain");
     });
   });
-  
 });
