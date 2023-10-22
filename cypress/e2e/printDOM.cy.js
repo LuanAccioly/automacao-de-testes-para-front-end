@@ -8,7 +8,7 @@ const printHTML = ($el) => {
 }
 
 it('usando imprimeHTML', () => {
-    cy.visit("https://curso-automacao.vercel.app/aulas/aula3/encontro3.html");
+    cy.visit("https://curso-automacao.vercel.app/aulas/aula3/index.html");
 
     // imprime no console do DevTools
     cy.get("table tbody tr").then(printHTML)

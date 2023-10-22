@@ -58,7 +58,7 @@ it('Verificando diferentes listas', () => {
   cy.get('.todo-list li').should('have.length',1)
 });
 
-it('marca e desmarca item', () => {
+it('Marca e desmarca item', () => {
   // Insere dois elementos na lista
   cy.get('.new-todo').type('Fazer backup{enter}')
   cy.get('.new-todo').type('Preparar aula{enter}')
