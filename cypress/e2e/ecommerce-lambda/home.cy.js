@@ -9,7 +9,7 @@ describe("Testa a home page", () => {
     });
 
     it("Procura por um produto", () => {
-        home.getSearchInput().type("iphone")
-        home.getSearchButton().click()
+        home.searchInput().type("iphone")
+        home.searchButton().click()
     })
 })

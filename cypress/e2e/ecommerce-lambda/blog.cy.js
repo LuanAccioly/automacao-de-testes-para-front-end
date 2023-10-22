@@ -13,8 +13,8 @@ describe("Testa a página do blog", () => {
     })
 
     it("Nome das categorias exibido corretamente", () => {
-        blog.getFirstCategoryButton().should("contain.text", "Business")
-        blog.getSecondCategoryButton().should("contain.text", "Electronics")
-        blog.getThirdCategoryButton().should("contain.text", "Technology")
+        blog.firstCategoryButton().should("contain.text", "Business")
+        blog.secondCategoryButton().should("contain.text", "Electronics")
+        blog.thirdCategoryButton().should("contain.text", "Technology")
     })
 })
