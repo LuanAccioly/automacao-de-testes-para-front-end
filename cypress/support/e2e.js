@@ -22,5 +22,9 @@ import "cypress-mochawesome-reporter/register";
 
 // descomentar caso queira rodar antes de todos os testes
 // before(() => {
-//     cy.log("Global - Roda antes de todos");
+//     cy.log("Global - Roda uma vez antes de todas as specs");
+// });
+
+// beforeEach(() => {
+//     cy.log("Global - Roda antes de cada teste em todas as specs");
 // });

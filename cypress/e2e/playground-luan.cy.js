@@ -82,13 +82,13 @@ describe("Teste de elementos com particularidades", () => {
   });
 
   it("Abrir Alert", () => {
-    cy.get("[data-test=openAlertButton]").click();
-
     // intercepta a ocorrência do evento de abertura de um alerta
     cy.on("window:alert", ($message) => {
       // Confirma o conteúdo do alerta
       expect($message).to.equal("Isso é um alerta!");
     });
+    //clica no link para abrir o alerta
+    cy.get("[data-test=openAlertButton]").click();
   });
 
   it("Acessar elemento dentro de um Iframe", () => {

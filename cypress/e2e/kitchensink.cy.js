@@ -9,7 +9,7 @@ describe('Buscando (Querying)', () => {
   it('get - busca botao', () => {
     //busca pelo id
     cy.get('#query-btn').should('contain', 'Button')
-
+    
     //busca pela classe
     cy.get('.query-btn').should('contain', 'Button')
 
@@ -116,7 +116,7 @@ describe('Asserções (asserts)', () => {
     // suponha a UI gera um número dinamicamente, de forma aleatória
     // este teste passa se o número em algum momento está no intervalo
     cy.get('#random-number')
-      .should(($div) => { 
+      .should(($div) => {
         //o corpo desta função é executado 
         // até que passe a asserção ou aconteça timeout
         const n = parseFloat($div.text())
@@ -126,29 +126,52 @@ describe('Asserções (asserts)', () => {
 
   it('Verificando a tabela', () => {
     cy.get('.assertion-table')
-    .find('tbody tr:last').should('have.class', 'success')
-    .find('td')
-    .first()
-    // checking the text of the  element in various ways
-    .should('have.text', 'Column content')
-    .should('contain', 'Column content')
-    .should('have.html', 'Column content')
-    // chai-jquery uses "is()" to check if element matches selector
-    .should('match', 'td')
-    // to match text content against a regular expression
-    // first need to invoke jQuery method text()
-    // and then match using regular expression
-    .invoke('text')
-    .should('match', /column content/i)
-  
-  // a better way to check element's text content against a regular expression
-  // is to use "cy.contains"
-  // https://on.cypress.io/contains
-  cy.get('.assertion-table')
-    .find('tbody tr:last')
-    // finds first  element with text content matching regular expression
-    .contains('td', /column content/i)
-    .should('be.visible')
+      .find('tbody tr:last').should('have.class', 'success')
+      .find('td')
+      .first()
+      // checking the text of the  element in various ways
+      .should('have.text', 'Column content')
+      .should('contain', 'Column content')
+      .should('have.html', 'Column content')
+      // chai-jquery uses "is()" to check if element matches selector
+      .should('match', 'td')
+      // to match text content against a regular expression
+      // first need to invoke jQuery method text()
+      // and then match using regular expression
+      .invoke('text')
+      .should('match', /column content/i)
+
+    // a better way to check element's text content against a regular expression
+    // is to use "cy.contains"
+    // https://on.cypress.io/contains
+    cy.get('.assertion-table')
+      .find('tbody tr:last')
+      // finds first  element with text content matching regular expression
+      .contains('td', /column content/i)
+      .should('be.visible')
+  });
+
+});
+
+describe('Cookies', () => {
+
+  beforeEach(() => {
+    cy.visit('https://example.cypress.io/commands/cookies')
+  });
+
+  it('get/set cookie', () => {
+    //verifica que inicialmente cookies estão vazios
+    cy.getCookies().should('be.empty')
+
+    //clica em botão que persiste o cookie com nome token
+    cy.get('#getCookie .set-a-cookie').click()
+    
+    //recupera o objeto do cookie e verifica se cookie 
+    //possui uma propriedade chamada value cujo valor é 123ABC
+    cy.getCookie('token').should('have.property', 'value', '123ABC')
+
+    cy.setCookie('cookie2','valorCookie')
+    cy.getCookie('cookie2').should('have.property', 'value', 'valorCookie')
   });
 
 });
