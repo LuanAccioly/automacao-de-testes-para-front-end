@@ -14,12 +14,13 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+import "cypress-mochawesome-reporter/register";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 // descomentar caso queira rodar antes de todos os testes
-// before(() => { 
+// before(() => {
 //     cy.log("Global - Roda antes de todos");
 // });
