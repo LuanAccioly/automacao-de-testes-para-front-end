@@ -12,7 +12,7 @@ describe("Testa a home page", () => {
     home.searchButton().click();
   });
 
-  it.only("Procura por um produto utilizando filtro", () => {
+  it("Procura por um produto utilizando filtro", () => {
     home.filterButton().click();
     home.selectCategoryFilter("Laptops").click();
     home.searchInput().type("macbook");

@@ -214,7 +214,7 @@ describe('Requisições HTTP', () => {
       });
   });
 
-  it.only('Testando intercept e wait', () => {
+  it('Testando intercept e wait', () => {
     // Escuta requisições GET cuja URL contém comments/1
     cy.intercept('GET', '**/comments/*').as('getComment')
 
