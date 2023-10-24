@@ -109,7 +109,7 @@ it('Marca e desmarca item (com variáveis e alias)', () => {
   cy.get('@lis').should('have.length',2)  
 });
 
-it.only('Inserindo tarefas a partir de um arquivo', () => {  
+it('Inserindo tarefas a partir de um arquivo', () => {  
     //carrega tarefas a partir do arquivo
     cy.fixture('todos.json').then(($fix)=>{
       let contador = 1 

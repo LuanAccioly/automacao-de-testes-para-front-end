@@ -8,7 +8,7 @@ export class Home {
 
   /**
    * Retorna o input da busca.
-   * @returns DOM do input.
+   * @returns Subject do input.
    */
   searchInput() {
     return cy.get('input[name="search"]').first();
@@ -16,7 +16,7 @@ export class Home {
 
   /**
    * Recupera o botão da busca.
-   * @returns DOM do botão.
+   * @returns Subject do botão.
    */
   searchButton() {
     return cy.get("#search > div.search-button > button").first();
@@ -57,15 +57,26 @@ export class Home {
       "#widget-navbar-217834 > ul > li:nth-child(6) > a > div > span"
     );
   }
+
   filterButton() {
     return cy.get("[data-toggle='dropdown']").contains("All Categories");
   }
 
-  selectFilter(categorie) {
+  /**
+   * Seleciona o nome da categoria no menu dropdown ao lado do campo de busca.
+   * @param {*} categorie String da categoria a ser selecionada.
+   * @returns Subject do item selecionado.
+   */
+  selectCategoryFilter(categorie) {
     return cy.get(".dropdown-item").contains(categorie);
   }
 
-  getResults() {
+  /**
+   * Retorna os títulos dos produtos resultados como resultado
+   * na primeira página.
+   * @returns Subject com os títulos que são resultado da busca.
+   */
+  getFirstPageProducts() {
     return cy.get(".caption > .title");
   }
 }

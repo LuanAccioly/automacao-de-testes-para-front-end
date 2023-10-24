@@ -14,9 +14,9 @@ describe("Testa a home page", () => {
 
   it.only("Procura por um produto utilizando filtro", () => {
     home.filterButton().click();
-    home.selectFilter("Laptops").click();
+    home.selectCategoryFilter("Laptops").click();
     home.searchInput().type("macbook");
     home.searchButton().click();
-    home.getResults().should("have.length.greaterThan", 0);
+    home.getFirstPageProducts().should("have.length.greaterThan", 0);
   });
 });
