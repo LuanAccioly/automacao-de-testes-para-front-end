@@ -9,7 +9,7 @@ describe('Buscando (Querying)', () => {
   it('get - busca botao', () => {
     //busca pelo id
     cy.get('#query-btn').should('contain', 'Button')
-    
+
     //busca pela classe
     cy.get('.query-btn').should('contain', 'Button')
 
@@ -165,45 +165,68 @@ describe('Cookies', () => {
 
     //clica em botão que persiste o cookie com nome token
     cy.get('#getCookie .set-a-cookie').click()
-    
+
     //recupera o objeto do cookie e verifica se cookie 
     //possui uma propriedade chamada value cujo valor é 123ABC
     cy.getCookie('token').should('have.property', 'value', '123ABC')
 
-    cy.setCookie('cookie2','valorCookie')
+    cy.setCookie('cookie2', 'valorCookie')
     cy.getCookie('cookie2').should('have.property', 'value', 'valorCookie')
   });
 
 });
 
-describe.only('Requisições HTTP', () => {
+describe('Requisições HTTP', () => {
 
-  beforeEach(() => {
+  it("Testando request do tipo GET", () => {
     cy.visit("https://example.cypress.io/commands/network-requests");
-  });
-
-  it.only("Testando request do tipo GET", () => {  
     // Click no botão para fazer a requisição
+    // Esta requisição recupera o comentário com id 1
     cy.get(".network-btn").click();
-  
-    // Passamos a URL da requisição
-    cy.request("https://jsonplaceholder.cypress.io/comments/1").then(
-      (response) => {
-        // Todo código aqui dentro só será executado após a resposta do request
-        console.log(response)
-        // Verificamos se o campo de resultado do site contém o conteúdo recebido pelo request
+    // Realiza requisição para recuperar o comentário cujo id é 1
+    cy.request('GET', "https://jsonplaceholder.cypress.io/comments/1")//se mudar id falha
+      .then((response) => {
+        console.log(response.body)
+        // Verifica se body do response coincide com o que está na página
         cy.get(".network-comment").should("contain", response.body.body);
       }
-    );  
+      );
   });
 
-  it("Testando request do tipo POST", () => {  
-    cy.get(".network-post").click();
-    cy.request("https://jsonplaceholder.cypress.io/comments").then(() => {
-      // Verificamos se o campo de resultado do site contém o conteúdo recebido pelo request
-      cy.get(".network-post-comment").should("contain", "POST successful!");
-    });
+  it("Testando request do tipo POST", () => {
+    const titulo = 'Titulo do POST'
+    const conteudo = 'Fast, easy and reliable testing for anything that runs in a browser.'
+    // Submete um novo post usando a API REST emulada
+    // A emulação retorna uma resposta para simular a criação
+    // de um novo registro no backend. 
+    cy.request('POST', 'https://jsonplaceholder.cypress.io/posts', {
+      userId: 1,
+      title: titulo,
+      body: conteudo,
+    })
+      .then((response) => {
+        //código de status confirma que novo post foi criado
+        expect(response).property('status').to.equal(201)
+        // corpo possui como propriedade o título enviado
+        expect(response).property('body').to.contain({ title: titulo, })
+        // existem 100 registros na base emulada id do novo post é 101
+        expect(response.body).property('id').to.be.eq(101)
+      });
+  });
+
+  it.only('Testando intercept e wait', () => {
+    // Escuta requisições GET cuja URL contém comments/1
+    cy.intercept('GET', '**/comments/*').as('getComment')
+
+    cy.visit('https://example.cypress.io/commands/waiting')
+    
+    // ao clicar o botão, a página gera a requisição GET no endpoint
+    // https://jsonplaceholder.cypress.io/comments/1
+    cy.get('.network-btn').click()//se comentar a linha, o wait falha
+
+    // wait for GET comments/1
+    cy.wait('@getComment').its('response.statusCode').should('be.oneOf', [200, 304])
 
   });
-  
+
 });
