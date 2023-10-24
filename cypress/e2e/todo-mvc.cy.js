@@ -78,3 +78,54 @@ it('Marca e desmarca item', () => {
   // Tamanho da lista continua sendo 2
   cy.get('.todo-list li').should('have.length',2)  
 });
+
+it('Marca e desmarca item (com variáveis e alias)', () => {
+  const item1 = 'Fazer backup'
+  const item2 = 'Preparar aula'
+  // Insere dois elementos na lista
+  cy.get('.new-todo')
+    .type(item1).type('{enter}')
+    .type(item2).type('{enter}')
+  // Verifica que o tamanho da lista é 2
+  cy.get('.todo-list li')
+    .as('lis')
+    .should('have.length',2)
+  // O conteúdo corresponde ao que foi digitado
+  cy.get('.todo-list .view > label')
+    .as('labels')
+    .eq(0).should('have.text', item2)
+  cy.get('@labels').eq(1).should('have.text', item1)
+  // Marca um dos elementos como completo
+  cy.get('.toggle').eq(0)
+    .as('toggle')
+    .click()
+  // Verifica que o elemento marcado está marcado como completo
+  cy.get('@lis').first().should('have.class','completed')
+  // Desmarque o elemento que foi marcado
+  cy.get('@toggle').click()
+  // Verifica que o estilo do elemento é o estilo antes da marcação 
+  cy.get('@lis').first().should('not.have.class','completed')
+  // Tamanho da lista continua sendo 2
+  cy.get('@lis').should('have.length',2)  
+});
+
+it.only('Inserindo tarefas a partir de um arquivo', () => {  
+    //carrega tarefas a partir do arquivo
+    cy.fixture('todos.json').then(($fix)=>{
+      let contador = 1 
+      //insere cada das tarefas do arquivo
+      $fix.tarefas.forEach(($tarefa)=>{
+        //digita uma nova tarefa
+        cy.get('.new-todo').type($tarefa).type('{enter}')
+        //verifica o tamanho da lista após inserir tarefa
+        cy.get('.todo-list li').should('have.length',contador++)
+      })
+      contador = 0
+      //verifica que as tarefas estão na lista
+      // na ordem inversa que foram inseridas
+      $fix.tarefas.reverse().forEach(($tarefa)=>{
+        cy.get('.todo-list .view > label')
+          .eq(contador++).should('have.text', $tarefa)
+      })
+    })  
+});

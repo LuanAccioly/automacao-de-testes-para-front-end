@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "report": "npx cypress run --reporter mochawesome ",
     "generate-html": "npx mochawesome-merge cypress/report/mochawesome/*.json -o cypress/report/mochawesome/output.json && npx marge cypress/report/mochawesome/output.json --reportDir ./ --inline && node deleteReports.js"
-
   },
   "repository": {
     "type": "git",

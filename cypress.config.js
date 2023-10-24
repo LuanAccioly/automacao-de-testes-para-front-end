@@ -27,7 +27,7 @@ module.exports = defineConfig({
     charts: true,
     embeddedScreenshots: true,
     inlineAssets: true,
-    overwrite: false,
+    overwrite: true,
     html: false,
     json: true,
     ignoreVideos: true,

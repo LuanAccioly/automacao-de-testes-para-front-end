@@ -6,7 +6,7 @@ it('t1 - ok', () => {
     cy.get('#password1').type('abc')
 });
 
-it.only('t1 - nok', () => {
+it('t1 - nok', () => {
     cy.visit('https://example.cypress.io/commands/actions')
     const email = cy.get('.action-email')
     const pwd = cy.get('#password1')
