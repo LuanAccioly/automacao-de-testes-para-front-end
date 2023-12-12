@@ -1,5 +1,5 @@
 let contador = 0
-const MIN_TENTATIVAS = 1
+const MIN_TENTATIVAS = 2
 
 it('Teste configurado para falhar algumas vezes',
     {
@@ -10,8 +10,10 @@ it('Teste configurado para falhar algumas vezes',
     },
     () => {
         if (contador++ < MIN_TENTATIVAS) {
+            //faz o teste falhar
             cy.visit('http://paginanaoexiste.com')
         } else {
+            //faz o teste passar
             cy.visit('https://docs.cypress.io/guides/references/best-practices')
         }
 });

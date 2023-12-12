@@ -120,12 +120,12 @@ it('Inserindo tarefas a partir de um arquivo', () => {
         //verifica o tamanho da lista após inserir tarefa
         cy.get('.todo-list li').should('have.length',contador++)
       })
-      contador = 0
+      let indice = 0
       //verifica que as tarefas estão na lista
       // na ordem inversa que foram inseridas
       $fix.tarefas.reverse().forEach(($tarefa)=>{
         cy.get('.todo-list .view > label')
-          .eq(contador++).should('have.text', $tarefa)
+          .eq(indice++).should('have.text', $tarefa)
       })
     })  
 });

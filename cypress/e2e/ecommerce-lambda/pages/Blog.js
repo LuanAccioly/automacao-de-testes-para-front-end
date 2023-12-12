@@ -14,7 +14,7 @@ export class Blog {
 
     /**
      * Retorna botão da primeira categoria.
-     * @returns DOM do botão.
+     * @returns Subject do botão.
      */
     firstCategoryButton() {
         return cy.get("#entry_210963 > div > a:nth-child(1)")

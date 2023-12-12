@@ -195,7 +195,7 @@ describe('Requisições HTTP', () => {
 
   it("Testando request do tipo POST", () => {
     const titulo = 'Titulo do POST'
-    const conteudo = 'Fast, easy and reliable testing for anything that runs in a browser.'
+    const conteudo = 'Conteúdo do meu post.'
     // Submete um novo post usando a API REST emulada
     // A emulação retorna uma resposta para simular a criação
     // de um novo registro no backend. 
@@ -214,7 +214,7 @@ describe('Requisições HTTP', () => {
       });
   });
 
-  it('Testando intercept e wait', () => {
+  it.only('Testando intercept e wait', () => {
     // Escuta requisições GET cuja URL contém comments/1
     cy.intercept('GET', '**/comments/*').as('getComment')
 
