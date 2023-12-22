@@ -13,14 +13,14 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-    cy.log("Roda após cada testte");
+    cy.log("Roda após cada teste");
 });
 
 it('Teste 1', () => {
     cy.log('Corpo do teste 1')
 });
 
-it('Teste 2', () => {
+it.only('Teste 2', () => {
     cy.log('Corpo do teste 2')
 });
 

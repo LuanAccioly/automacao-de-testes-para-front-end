@@ -48,7 +48,7 @@ describe('Buscando (Querying)', () => {
 
 });
 
-describe('Agindo (acting)', () => {
+describe('Agindo (Acting)', () => {
 
   beforeEach(() => {
     cy.visit("https://example.cypress.io/commands/actions")
@@ -85,7 +85,7 @@ describe('Agindo (acting)', () => {
 
 });
 
-describe('Asserções (asserts)', () => {
+describe('Asserções (Assertions)', () => {
 
   beforeEach(() => {
     cy.visit('https://example.cypress.io/commands/assertions')
@@ -178,17 +178,17 @@ describe('Cookies', () => {
 
 describe('Requisições HTTP', () => {
 
-  it("Testando request do tipo GET", () => {
+  it.only("Testando request do tipo GET", () => {
     cy.visit("https://example.cypress.io/commands/network-requests");
-    // Click no botão para fazer a requisição
+    // Click no botão para que a aplicação faça uma requisição GET
     // Esta requisição recupera o comentário com id 1
     cy.get(".network-btn").click();
     // Realiza requisição para recuperar o comentário cujo id é 1
     cy.request('GET', "https://jsonplaceholder.cypress.io/comments/1")//se mudar id falha
-      .then((response) => {
-        console.log(response.body)
+      .then(($response) => {
+        console.log($response.body)
         // Verifica se body do response coincide com o que está na página
-        cy.get(".network-comment").should("contain", response.body.body);
+        cy.get(".network-comment").should("contain", $response.body.body);
       }
       );
   });
