@@ -9,6 +9,7 @@ module.exports = defineConfig({
   video: true, // para gravar vídeos ao rodar npx cypress run
   e2e: {
     experimentalStudio: true, //para habilitar o Cypress Studio
+    //baseUrl: "https://bank-stories.replit.app",
     baseUrl: "https://ecommerce-playground.lambdatest.io",
     setupNodeEvents(on, config) {
       on("before:run", async (details) => {

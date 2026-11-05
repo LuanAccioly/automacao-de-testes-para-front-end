@@ -178,7 +178,7 @@ describe('Cookies', () => {
 
 describe('Requisições HTTP', () => {
 
-  it.only("Testando request do tipo GET", () => {
+  it("Testando request do tipo GET", () => {
     cy.visit("https://example.cypress.io/commands/network-requests");
     // Click no botão para que a aplicação faça uma requisição GET
     // Esta requisição recupera o comentário com id 1

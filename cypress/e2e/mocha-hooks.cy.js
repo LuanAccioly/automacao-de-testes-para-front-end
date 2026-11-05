@@ -20,7 +20,7 @@ it('Teste 1', () => {
     cy.log('Corpo do teste 1')
 });
 
-it.only('Teste 2', () => {
+it('Teste 2', () => {
     cy.log('Corpo do teste 2')
 });
 
